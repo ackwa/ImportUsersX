@@ -21,7 +21,7 @@ $sAdminUsername : Username of the administrator to send email to.
 
 $iAddCount : Counts how many users are added into Modx.    
 $sChangecount : Count hiw many users are updated into Modx.  
-$sAddLog : List all of added users. 
+$sAddLog : List all of added users.  
 $sChangeLog : List all of updated users.  
 
 Need more explanations ? Don't be shy ! Send a mail at <kevin.pause@supinfo.com>
@@ -30,7 +30,7 @@ Bug tracker
 ---
 Have a bug, a suggestion? Please [create an issue here on GitHub!](https://github.com/ackwa/xboot/issues)
 
-Author
+Authors
 ---
 **Kevin Pausé**, **Gildas Noël**
 
