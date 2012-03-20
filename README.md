@@ -9,20 +9,20 @@ Documentation
 ---
 
 ### Parameters ###
-$sGroup : Name of the group to add members in.
-$sEmailChunkName : Chunk's name for the email sent to the user.
-$sEmailAdminChunkName : Chunk's name for the email sent to the administrator.
-$bForcePasswordChange : Set if password have to be changed if a user already exists.
-$sCSVPath : Path to the CSV file.
-$sAdminUsername : Username of the administrator to send email to.
+$sGroup : Name of the group to add members in.  
+$sEmailChunkName : Chunk's name for the email sent to the user.  
+$sEmailAdminChunkName : Chunk's name for the email sent to the administrator.  
+$bForcePasswordChange : Set if password have to be changed if a user already exists.  
+$sCSVPath : Path to the CSV file.  
+$sAdminUsername : Username of the administrator to send email to.  
 
 ### Other variables ###
-**These variables must not be changed !**
+**These variables must not be changed !**  
 
-$iAddCount : Counts how many users are added into Modx.
-$sChangecount : Count hiw many users are updated into Modx.
-$sAddLog : List all of added users.
-$sChangeLog : List all of updated users.
+$iAddCount : Counts how many users are added into Modx.    
+$sChangecount : Count hiw many users are updated into Modx.  
+$sAddLog : List all of added users. 
+$sChangeLog : List all of updated users.  
 
 Need more explanations ? Don't be shy ! Send a mail at <kevin.pause@supinfo.com>
 
