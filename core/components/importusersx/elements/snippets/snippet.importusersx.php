@@ -42,6 +42,7 @@ $iChangeCount = 0;
 $sAddLog = '';
 $sChangeLog = '';
 
+echo 'Parsing CSV...';
 if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
     
     while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
