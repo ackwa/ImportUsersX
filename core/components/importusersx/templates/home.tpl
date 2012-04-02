@@ -1,1 +1,1 @@
-<div id="importusersx-panel-home-div"></div>
+<div id="importusersx-panel-home-div">Use the force !</div>

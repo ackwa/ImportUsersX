@@ -7,10 +7,6 @@
 	 
 	 class ImportUsersX
 {
-	public $modx;
-	public $config = array();
-	public $chunks = array();
-
 	function __construct(modX &$modx,array $config = array()) {
 
 		$this->modx =& $modx;
@@ -28,6 +24,7 @@
 			'cssUrl' => $assetsUrl.'css/',
 			'assetsUrl' => $assetsUrl,
 			'connectorUrl' => $assetsUrl.'connector.php',
+			'templatesPath' => $basePath.'templates/',
 		), $config);
 
 		$this->modx->addPackage('importusersx', $this->config['modelPath']);
