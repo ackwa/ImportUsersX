@@ -12,5 +12,5 @@ ImportUsersX.page.Home = function(config) {
     });
     ImportUsersX.page.Home.superclass.constructor.call(this,config);
 };
-Ext.extend(ImportUsersx.page.Home,MODx.Component);
+Ext.extend(ImportUsersX.page.Home,MODx.Component);
 Ext.reg('importusersx-page-home',ImportUsersX.page.Home);
