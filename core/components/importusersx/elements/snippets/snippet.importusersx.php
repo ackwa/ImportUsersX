@@ -14,6 +14,7 @@
 * - Utiliser les fonction de logs de MODX
 * - Le fichier CSV doit être hors de la racine web
 */
+require_once('../../../../model/modx/modprocessor.class.php');
 global $modx;
 
 /*
@@ -27,13 +28,12 @@ global $modx;
  * $sAdminUsername : Username of the administrator to send email to.
  * ...
  */
- 
-$sGroup    = 'Membres';
-$sEmailChunkName = 'AddUsersEmailChunk';
-$sEmailAdminChunkName = 'AddUsersEmailAdminChunk';
+$sGroup    = $_POST['groupName'];//'Membres';
+$sEmailChunkName = $_POST['userMailChunkName'];//'AddUsersEmailChunk';
+$sEmailAdminChunkName = $_POST['adminMailChunkName'];//'AddUsersEmailAdminChunk';
 $bForcePasswordChange = false;
-$sCSVPath  = $modx->getOption('assets_path').'/data/users.csv';
-$sAdminUsername = 'tzoreol@gmail.com';
+$sCSVPath  = $_POST['csvFilePath'];//$modx->getOption('assets_path').'/data/users.csv';
+$sAdminUsername = $_POST['adminUsername'];//'tzoreol@gmail.com';
 
 /* ----- END OF Parameters ----- */
 
@@ -42,9 +42,8 @@ $iChangeCount = 0;
 $sAddLog = '';
 $sChangeLog = '';
 
-echo 'Parsing CSV...';
 if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
-    
+    echo "Parsing CSV...\n";
     while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
     {
     	    $prenom = trim($data[0]);
@@ -61,8 +60,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
     			'active'   => 1,
     			'blocked'  => 0,
     			);
-				
 				$user = $modx->getObject('modUser', array('username'=>$alias)); // Sera 1 s'il existe, 0 sinon
+				echo "yesy";
 				if ( $user  && !$bForcePasswordChange ) //Si l'utilisateur existe et qu'on ne doit pas forcer le changement de mot de passe
 				{
  
@@ -72,13 +71,13 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 					if( $userProfile = $modx->getObject('modUserProfile',array('internalKey' => $uid)))
 					{
 						$userProfile->set('fullname', $prenom. ' ' .$nom);
-						echo 'Informations de <strong>' .$user->get('username'). '</strong> modifiés<br/>';
+						echo "Information de " .$alias. " modifiés.\n";//'Informations de <strong>' .$user->get('username'). '</strong> modifiés<br/>';
 						$sChangeLog .= 'Modification des informations de ' .$user->get('username'). '<br/>';
 						$iChangeCount++;
 					}
 					else
 					{
-						echo 'Echec de modification des informations pour l\'utilisateur ' .$uid;
+						echo "Echec de modification de l'utilisateur " .$uid. "\n";//'Echec de modification des informations pour l\'utilisateur ' .$uid;
 					}
 						
 					$userProfile->save();
@@ -86,6 +85,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 				else
 				{	
 					//Sinon on crée un nouvel utilisateur (il sera écrasé s'il existe déjà)
+					echo "Création d'un nouvel utilisateur.\n";
     				$user  = $modx->newObject('modUser', $fields);
 					
             		$sPass = $user->generatePassword(7); //Génération du mot de passe
@@ -125,11 +125,11 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 								  'password' => $sPass,
 								 ));
 						$user->sendEmail($sMessage);
-						echo '<p>Utilisateur <strong>' .$alias. '</strong> ajouté</p><br/>';
+						echo "Utilisateur " .$alias. " ajouté.\n";//'<p>Utilisateur <strong>' .$alias. '</strong> ajouté</p><br/>';
 					} 
 					else 
 					{
-						echo '<p>Echec d\'ajout de l\'utilisateur <strong>' .$alias.' </strong></p><br/>';
+						echo "Echec de l'ajout de l'utilisateur " .$alias. ".\n";//'<p>Echec d\'ajout de l\'utilisateur <strong>' .$alias.' </strong></p><br/>';
 					}
 				}
     }
@@ -140,10 +140,15 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 								  'addLog'      => $sAddLog,
 								  'changeLog'   => $sChangeLog,
 								 ));
+	echo "Envoi du mail à l'administrateur.\n";
 	$user->sendEmail($sMessageAdmin);
+	echo "Mail envoyé.\n";
 	
 	fclose($csv);
+	echo "Fin de l'importation des utilisateurs.\n";
 }
 else {
-	echo '<p>Echec d\'accès au fichier CSV</p><br/>';
+	echo "Echec d'accès au fichier\n";//'<p>Echec d\'accès au fichier CSV</p><br/>';
+	$s = `ls`;
+	echo $_POST['csvFilePath'];
 }

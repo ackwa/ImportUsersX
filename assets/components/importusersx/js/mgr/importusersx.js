@@ -1,4 +1,4 @@
-var ImportUsersX = function(config) {
+/*var ImportUsersX = function(config) {
     config = config || {};
     ImportUsersX.superclass.constructor.call(this,config);
 };
