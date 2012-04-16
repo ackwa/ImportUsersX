@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1); 
+ini_set('log_errors', 1); 
+ini_set('error_log', dirname(__FILE__) . '/error_log.txt'); 
+error_reporting(E_ALL);
 /*
 * Todo :
 *
@@ -14,8 +18,10 @@
 * - Utiliser les fonction de logs de MODX
 * - Le fichier CSV doit être hors de la racine web
 */
+require_once('../../../../model/modx/modx.class.php');
 require_once('../../../../model/modx/modprocessor.class.php');
-global $modx;
+$modx = new modX();
+$modx->initialize('mgr');
 
 /*
  * Parameters
@@ -46,8 +52,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
     echo "Parsing CSV...\n";
     while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
     {
-    	    $prenom = trim($data[0]);
-			$nom = trim($data[1]);
+    	  $prenom = trim($data[0]);
+		  	$nom = trim($data[1]);
     		$email = trim($data[2]);
 			
     		//list($alias) = explode('@',$email); //On récupère l'identifiant de l'email afin qu'il soit le même pour ModX 
@@ -61,10 +67,9 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
     			'blocked'  => 0,
     			);
 				$user = $modx->getObject('modUser', array('username'=>$alias)); // Sera 1 s'il existe, 0 sinon
-				echo "yesy";
 				if ( $user  && !$bForcePasswordChange ) //Si l'utilisateur existe et qu'on ne doit pas forcer le changement de mot de passe
 				{
- 
+ 					echo "L'utilisateur existe déjà. Modification de ses informations.\n";
    					//On se contente de modifier ses informations de profil
 					//Based on code from culd | steffan
 					$uid = $user->get('id');
@@ -81,6 +86,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 					}
 						
 					$userProfile->save();
+					echo "Utilisateur sauvegardé.\n";
 				}
 				else
 				{	
@@ -133,13 +139,17 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 					}
 				}
     }
+	echo "Récupération profil administrateur.\n";
 	$user = $modx->getObject('modUser', array('username'=>$sAdminUsername));
+	echo "Profil récupéré.\n";
+	echo "Récupération du chunk pour l'email administrateur.\n";
 	$sMessageAdmin = $modx->getChunk($sEmailAdminChunkName, array(
 								  'addCount'    => $iAddCount,
 								  'changeCount' => $iChangeCount,
 								  'addLog'      => $sAddLog,
 								  'changeLog'   => $sChangeLog,
 								 ));
+	echo "Chunk récupéré.\n";
 	echo "Envoi du mail à l'administrateur.\n";
 	$user->sendEmail($sMessageAdmin);
 	echo "Mail envoyé.\n";

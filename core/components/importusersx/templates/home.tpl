@@ -1,7 +1,7 @@
 <div id="importusersx-panel-home-div">
 
 	<h2>ImportUsersX</h2>
-    <div class="x-panel-body">
+    <div class="modx-page-header">
     <h3>Configuration de ImportUsersX</h3>
     <form method="POST" action="" name="ajax">
     <script>
@@ -73,10 +73,10 @@ function submitForm(f)
             <input type="text" id="adminUsername" name="adminUsername" title="Nom d'utilisateur de l'administrateur"/>
         </p><br/>
         <p>
-        	<input type="button" value="Valider" ONCLICK="submitForm(this.form)"/>
+        	<input type="button" value="Valider"  class="x-btn" ONCLICK="submitForm(this.form)"/>
         </p><br/>
         <p>
-            <textarea rows="10" id="test"></textarea>
+            <textarea rows="10" cols="50" id="test"></textarea>
         </p><br/>
     </form>
     </div>

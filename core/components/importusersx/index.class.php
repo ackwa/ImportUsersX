@@ -1,9 +1,6 @@
 <?php
 	require_once dirname(__FILE__) . '/model/importusersx/importusersx.class.php';
-    	class IndexManagerController extends modExtraManagerController {
-        public static function getDefaultController() { return 'home'; }
-    }
- 
+    	
     abstract class ImportUsersXManagerController extends modManagerController {
          
         public $importusersx;
@@ -22,4 +19,8 @@
             return array('importusersx:default');
         }
         public function checkPermissions() { return true;}
+    }
+      
+      class IndexManagerController extends modExtraManagerController {
+        public static function getDefaultController() { return 'home'; }
     }
