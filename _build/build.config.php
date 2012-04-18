@@ -1,4 +1,5 @@
 <?php
+
 define('MODX_BASE_PATH', '../../');
 define('MODX_CORE_PATH', MODX_BASE_PATH . 'core/');
 define('MODX_MANAGER_PATH', MODX_BASE_PATH . 'manager/');

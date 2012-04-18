@@ -1,9 +1,9 @@
-/*var ImportUsersX = function(config) {
+var importUsersX = function(config) {
     config = config || {};
-    ImportUsersX.superclass.constructor.call(this,config);
+    importUsersX.superclass.constructor.call(this,config);
 };
-Ext.extend(ImportUsersX,Ext.Component,{
+Ext.extend(importUsersX,Ext.Component,{
     page:{},window:{},grid:{},tree:{},panel:{},combo:{},config: {}
 });
-Ext.reg('importusersx',ImportUsersX);
-ImportUsersX = new ImportUsersX();
+Ext.reg('importusersx',importUsersX);
+importUsersX = new importUsersX();
