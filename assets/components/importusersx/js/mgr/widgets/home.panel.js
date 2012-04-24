@@ -84,6 +84,8 @@ function importusers() {
 	var chunkAdmin = Ext.get('chunkAdmin').getValue();
 	var csvFile = Ext.get('csvFilePath').getValue();
 	
+	document.getElementById("log").value="Please wait.";
+	
 	if (window.XMLHttpRequest)
 	{	
 		req = new XMLHttpRequest();	
@@ -108,7 +110,7 @@ function importusers() {
 
 	req.onreadystatechange = function()
 	{ 
-		if(req.readyState == 4)
+	 if(req.readyState == 4)
 		{
 			if(req.status == 200 || req.status == 0)
 			{
@@ -118,7 +120,7 @@ function importusers() {
 			{
 				document.getElementById("log").value="Error: returned status code " + req.status + " - " + req.statusText;
 			}
-		} 	
+		} 
 	};
 
 	req.setRequestHeader('Content-type','application/x-www-form-urlencoded');
@@ -130,6 +132,7 @@ Ext.extend(importUsersX.panel.Home,MODx.Panel);
 Ext.reg('importusersx-panel-home',importUsersX.panel.Home);
 
 window.onload = function (){
+	
 	var onChange = "AIM.submit(this.form, {'onStart' : startCallbackform, 'onComplete' : completeCallbackform})";
   var uploadForm = document.createElement('form');
   uploadForm.setAttribute('id','upload');
