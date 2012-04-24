@@ -49,9 +49,8 @@ $sGroup    = $_POST['groupName'];
 $sEmailChunkName = $_POST['userMailChunkName'];
 $sEmailAdminChunkName = $_POST['adminMailChunkName'];
 $bForcePasswordChange = false; //Will soon be added
-
 $sCSVPath  = dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/core/components/importusersx/controllers/'.$_POST['csvFilePath'];
-$sAdminUsername = $_POST['adminUsername'];
+$sAdminUsername = $modx->getOption('emailsender');
 
 /* ----- END OF Parameters ----- */
 
@@ -59,13 +58,16 @@ $iAddCount = 0;
 $iChangeCount = 0;
 $sAddLog = '';
 $sChangeLog = '';
-
 if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 
 	$modx->setLogLevel(modX::LOG_LEVEL_INFO);
 	$modx->setLogTarget('ECHO');
 	
-	$modx->log(modX::LOG_LEVEL_INFO,'Parsing CSV');
+	$modx->getService('lexicon','modLexicon');
+	$modx->lexicon->load('fr:importusersx:default');
+	
+	//$sLog = $modx->lexicon('importusersx');
+	$modx->log(modX::LOG_LEVEL_INFO,'Parsing CSV.');
 
 	while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
 	{
@@ -190,9 +192,23 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 		
 	$modx->log(modX::LOG_LEVEL_INFO,'Sending email to administrator.');
 		
-	$user->sendEmail($sMessageAdmin);
-		
-	$modx->log(modX::LOG_LEVEL_INFO,'Email sent');
+	//$user->sendEmail($sMessageAdmin);
+	$modx->getService('mail', 'mail.modPHPMailer');
+	$modx->mail->set(modMail::MAIL_BODY, $sMessageAdmin);
+	$modx->mail->set(modMail::MAIL_FROM, $modx->config['emailsender']);
+	$modx->mail->set(modMail::MAIL_FROM_NAME, $modx->config['site_name']);
+	$modx->mail->set(modMail::MAIL_SENDER, $modx->config['emailsender']);
+	$modx->mail->set(modMail::MAIL_SUBJECT, 'ImportUsersX import results');
+	$modx->mail->address('to', $modx->config['emailsender']);	
+	$modx->mail->send();
+	if (!$modx->mail->send()) {
+    $modx->log(modX::LOG_LEVEL_ERROR,'An error occurred while trying to send the email: '.$modx->mail->mailer->ErrorInfo);
+	}
+	else
+	{
+		$modx->log(modX::LOG_LEVEL_INFO,'Email sent');
+	}
+	$modx->mail->reset();
 		
 	fclose($csv);
 	
