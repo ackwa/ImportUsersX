@@ -11,7 +11,7 @@ $chunks[1]->fromArray(array(
     'id' => 1,
     'name' => 'UserEmailChunk',
     'description' => 'Chunk for the email which will be sent to the user.',
-    'chunk' => getChunkContent($sources['chunks'].'userEmail.chunk.php'),
+    'chunk' => getChunkContent($aSources['chunks'].'userEmail.chunk.php'),
 ),'',true,true);
 
 $chunks[2]= $modx->newObject('modChunk');
@@ -19,7 +19,7 @@ $chunks[2]->fromArray(array(
     'id' => 1,
     'name' => 'AdminEmailChunk',
     'description' => 'Chunk for the email which will be sent to the administrator.',
-    'chunk' => getChunkContent($sources['chunks'].'adminEmail.chunk.php'),
+    'chunk' => getChunkContent($aSources['chunks'].'adminEmail.chunk.php'),
 ),'',true,true);
  
 return $chunks;

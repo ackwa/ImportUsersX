@@ -53,9 +53,9 @@ $category->set('category',PKG_NAME);
 
 //Adding chunks
 $modx->log(modX::LOG_LEVEL_INFO, 'Packaging in chunks...');
-$chunks = include $sources['data'].'transport.chunks.php';
+$chunks = include $aSources['data'].'transport.chunks.php';
 if (empty($chunks)) $modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in chunks.');
-$category(addMany($chunks));
+$category->addMany($chunks);
 
 	/*Adding the snippet
 	$modx->log(modX::LOG_LEVEL_INFO,'Packaging in snippets...');
@@ -121,7 +121,6 @@ $vehicle->resolve('file',array(
 $builder->putVehicle($vehicle);
 unset($vehicle);
 	
-
 $modx->log(modX::LOG_LEVEL_INFO,'Packaging in menu...');
 $menu = include $aSources['data'].'transport.menu.php';
 	
