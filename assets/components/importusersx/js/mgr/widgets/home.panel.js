@@ -35,6 +35,7 @@ importUsersX.panel.Home = function(config) {
                         id: 'chunkAdmin',
 						description: _('importusersx.adminEmailChunk.desc'),
                         allowBlank: false,
+						value: 'AdminEmailChunk',
                         //blankText: _('importusersx.noAdminEmailChunk'),
 						anchor: '40%',
                     },{
@@ -44,6 +45,7 @@ importUsersX.panel.Home = function(config) {
                         id: 'chunkUser',
 						description: _('importusersx.userEmailChunk.desc'),
                         allowBlank: false,
+						value: 'UserEmailChunk',
                         blankText: _('importusersx.noUserEmailChunk'),
 						anchor: '40%',
                     },{
