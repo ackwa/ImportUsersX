@@ -26,7 +26,7 @@ importUsersX.panel.Home = function(config) {
                         id: 'groupName',
 						description: _('importusersx.groupName.desc'),
                         allowBlank: false,
-                        blankText: _('importusersx.noGroupName'),
+                        //blankText: _('importusersx.noGroupName'),
 						anchor: '40%',
                     },{
                         xtype: 'textfield', 
@@ -35,7 +35,7 @@ importUsersX.panel.Home = function(config) {
                         id: 'chunkAdmin',
 						description: _('importusersx.adminEmailChunk.desc'),
                         allowBlank: false,
-                        blankText: _('importusersx.noAdminEmailChunk'),
+                        //blankText: _('importusersx.noAdminEmailChunk'),
 						anchor: '40%',
                     },{
                         xtype: 'textfield', 
@@ -51,25 +51,6 @@ importUsersX.panel.Home = function(config) {
 						id: 'panel', 
 						border: false
 					},{
-                        xtype: 'modx-combo-browser',
-						fieldLabel: _('importusersx.csvFile'),
-                        name: 'csv-file',
-                        id: 'csv-file',
-						description: _('importusersx.csvFile.desc'),
-						allowBlank: false,
-						blankText: _('importusersx.noCsvFile'),
-						anchor: '40%',
-                    },{
-                        xtype: 'textfield', 
-                        name: 'adminUsername',
-						fieldLabel: _('importusersx.adminUsername'),
-                        id: 'adminUsername',
-						description: _('importusersx.adminUserneame.desc'),
-                        allowBlank: false,
-                        blankText: _('importusersx.noAdminUsername'),
-						anchor: '40%',
-                    },
-					{
                         xtype: 'textarea', 
                         name: 'log',
                         id: 'log',
@@ -100,7 +81,6 @@ function importusers() {
 	var chunkUser = Ext.get('chunkUser').getValue();
 	var chunkAdmin = Ext.get('chunkAdmin').getValue();
 	var csvFile = Ext.get('csvFilePath').getValue();
-	var adminUsername = Ext.get('adminUsername').getValue();
 	
 	if (window.XMLHttpRequest)
 	{	
@@ -147,7 +127,21 @@ function importusers() {
 Ext.extend(importUsersX.panel.Home,MODx.Panel);
 Ext.reg('importusersx-panel-home',importUsersX.panel.Home);
 
-
+window.onload = function (){
+	var onChange = "AIM.submit(this.form, {'onStart' : startCallbackform, 'onComplete' : completeCallbackform})";
+  var uploadForm = document.createElement('form');
+  uploadForm.setAttribute('id','upload');
+  uploadForm.setAttribute('method',"POST");
+  uploadForm.setAttribute('enctype',"multipart/form-data");
+  uploadForm.setAttribute('action',"../core/components/importusersx/controllers/home.class.php");
+  uploadForm.innerHTML = '<div class="x-form-item">' + 
+						 '<label name="csvFile" id="csvFile" class="x-form-item-label" style="width: 200px; margin-right: 2px;">' + 
+						 _('importusersx.csvFile') + 
+						 '</label><input type="file" id="csvPath" class="x-form-field-wrap x-form-field-trigger-wrap"  style="width: 300px;" name="userfile" onChange="'+onChange+';this.form.submit();"/>' +
+						 '</div>';
+	Ext.get("panel").appendChild(uploadForm);
+	
+};
 
 AIM = {
 
@@ -232,6 +226,3 @@ function startCallbackform() {
                // document.getElementById('nr').innerHTML = parseInt(document.getElementById('nr').innerHTML) + 1;
                // document.getElementById('r').innerHTML = response;
             }
-	
-Ext.extend(importUsersX.panel.Home,MODx.Panel);
-Ext.reg('importusersx-panel-home',importUsersX.panel.Home);
