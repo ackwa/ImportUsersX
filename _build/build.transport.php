@@ -89,18 +89,11 @@ $builder->setPackageAttributes(array(
 	'license' => file_get_contents($aSources['docs'] . 'license.txt'),
     'readme' => file_get_contents($aSources['docs'] . 'readme.txt'),
     'changelog' => file_get_contents($aSources['docs'] . 'changelog.txt'),
-	
-	//We don't need setup options for now
-    /*'setup-options' => array(
-    	'source' => $sources['build'].'setup.options.php',
-   		),*/
+    'setup-options' => array(
+    	'source' => $aSources['build'].'setup.options.php',
+   		),
 		
 ));
-		
-//Set the package up 
-$vehicle->resolve('php', array(
-	'source' => $aSources['build'].'setup.importusersx.php',
-));	
 
 $modx->log(modX::LOG_LEVEL_INFO,'Adding file resolvers to category...');
 
