@@ -1,6 +1,6 @@
 <?php
 
-//$modx->lexicon->load('importusersx:default');
+$modx->lexicon->load('importusersx:default');
 if (isset($_FILES['userfile']) AND $_FILES['userfile']['error'] == 0)
 {
 
@@ -21,6 +21,7 @@ else if (isset($_FILES['userfile']) AND $_FILES['userfile']['error'] != 0)
 {
 	echo 'Upload error';
 }
+
 class ImportUsersXHomeManagerController extends ImportUsersXManagerController {
 	
 	public function process(array $scriptProperties = array()) {}
