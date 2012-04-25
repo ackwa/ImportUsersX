@@ -99,7 +99,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			{
 				$userProfile->set('fullname', $sFirstName. ' ' .$sLastName);
 				
-				$sChangeLog .= $sAlias."\'s informations updated.\n";
+				$sChangeLog .= $sAlias."'s informations updated.\n";
 				$iChangeCount++;
 			}
 			else
@@ -128,16 +128,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 				'fullname'    => $sFirstName.' '.$sLastName,
 				'email'       => $sEmail,
 			));
-			
-			//Creates User Group		
-			$memberGroup = $modx->newObject('modUserGroupMember');
-			$memberGroup->fromArray(array(
-				'user_group' => $sGroup,
-				'member'     => $uid,
-				'role'        => 2,
-			));
-			
-			$memberGroup->save();
 						
 			$success = $user->addOne($userProfile); //Adds profile to created user
 						
@@ -145,8 +135,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			{
 				$sAddLog .= $user->get('username'). ' added <br />';
 				$iAddCount++;
-				
-				$user->joinGroup($sGroup);//Adds user to Group
+				($sGroup == 'Administrator') ? $iRoleId = 2 : $iRoleId = 1;
+				$user->joinGroup($sGroup, $iRoleId);//Adds user to Group
 				
 				$user->save();
 				$userProfile->save();
@@ -189,7 +179,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 	$modx->mail->set(modMail::MAIL_SUBJECT, 'ImportUsersX import results');
 	$modx->mail->setHTML(true);
 	$modx->mail->address('to', $modx->config['emailsender']);	
-	$modx->mail->send();
 	if (!$modx->mail->send()) {
     $modx->log(modX::LOG_LEVEL_ERROR,'An error occurred while trying to send the email: '.$modx->mail->mailer->ErrorInfo);
 	}
