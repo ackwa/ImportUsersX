@@ -135,6 +135,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			{
 				$sAddLog .= $user->get('username'). ' added <br />';
 				$iAddCount++;
+				
 				($sGroup == 'Administrator') ? $iRoleId = 2 : $iRoleId = 1;
 				$user->joinGroup($sGroup, $iRoleId);//Adds user to Group
 				
