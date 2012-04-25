@@ -143,7 +143,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 						
 			if ($success) 
 			{
-				$sAddLog .= $user->get('username'). ' added <br/>';
+				$sAddLog .= $user->get('username'). ' added <br />';
 				$iAddCount++;
 				
 				$user->joinGroup($sGroup);//Adds user to Group
@@ -187,6 +187,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 	$modx->mail->set(modMail::MAIL_FROM_NAME, $modx->config['site_name']);
 	$modx->mail->set(modMail::MAIL_SENDER, $modx->config['emailsender']);
 	$modx->mail->set(modMail::MAIL_SUBJECT, 'ImportUsersX import results');
+	$modx->mail->setHTML(true);
 	$modx->mail->address('to', $modx->config['emailsender']);	
 	$modx->mail->send();
 	if (!$modx->mail->send()) {
