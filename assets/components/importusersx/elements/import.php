@@ -155,7 +155,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 					array(
 						'alias'    => $sAlias,
 						'password' => $sPass,
-						'sname' =>  $modx->getOption('site_name')
+						'sname' =>  $modx->getOption('site_name'),
+						'surl' => $modx->getOption('url_scheme') . $modx->getOption('http_host') . $modx->getOption('manager_url'),
 					)
 				);
 				
