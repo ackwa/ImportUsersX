@@ -1,43 +1,68 @@
-ImportUsers
+ImportUsersX
 ===
+---
 
 Description
 ---
-ImportUsers is a snippet for ModX (it will soon be an add-on) wich helps you adding numerous users into your Modx using a .csv file.
+ImportUsers is an extra for ModX wich helps you adding numerous users into your Modx using a .csv file.
 
-Documentation
+Install
 ---
+If you don't have the package yet, you can download it on [GitHub](https://github.com/ackwa/ImportUsers "GitHub").
+Unzip it in a ImportUsersX folder, located at the root of your website.
+Package the extra by running the build.transport.php file in the _build directory.
+Once you've got the package install it via Package Manager (if you don't see it try to select "Search locally for packages" at the top of packages list.
 
-### Parameters ###
-$sGroup : Name of the group to add members in.  
-$sEmailChunkName : Chunk's name for the email sent to the user.  
-$sEmailAdminChunkName : Chunk's name for the email sent to the administrator.  
-$bForcePasswordChange : Set if password have to be changed if a user already exists.  
-$sCSVPath : Path to the CSV file.  
-$sAdminUsername : Username of the administrator to send email to.  
+### How to use ? ###
+Once the extra installed, go to **Components > ImportUsersX** in your modX menu.
 
-### Other variables ###
-**These variables must not be changed !**  
+**> NOTE : You may have to refresh the page before *CSV File* field appears.**
 
-$iAddCount : Counts how many users are added into Modx.    
-$sChangecount : Count hiw many users are updated into Modx.  
-$sAddLog : List all of added users.  
-$sChangeLog : List all of updated users.  
+Select the group you want to add the users to in **Users Group Name** field.
+In **Admin Email Chunk** and **User Email Chunk** fields, you also can add your own chunks. Just type their name.
 
-Need more explanations ? Don't be shy ! Send a mail at <kevin.pause@supinfo.com>
+Then, select a **CSV File** from your computer. An exemple is given to you at the end of this readme to be sure that you have the good format.
+
+Need more explanations ? Don't be shy ! Send a mail at [kevin.pause@supinfo.com](mailto:kevin.pause@supinfo.com)
+
+Improvements
+---
+We want this tool as close as possible of your needs. So if your have a suggestion, feel free to  [create an issue on GitHub](https://github.com/ackwa/ImportUsers/issues) or submit us your work (with pull requests on GitHub if it's possible). We also looking people to translate the extra and make it accessible for everyone.
 
 Bug tracker
 ---
-Have a bug, a suggestion? Please [create an issue here on GitHub!](https://github.com/ackwa/xboot/issues)
+Have a bug? Please [create an issue here on GitHub!](https://github.com/ackwa/ImportUsers/issues)
+
+---
 
 Authors
 ---
-**Kevin Pausé**, **Gildas Noël**
+**Kevin Pausé**    
+
++ [@tzoreol](www.twitter.com/tzoreol)
++ <http://github.com/Tzoreol>
++ [kevin.pause@supinfo.com](mailto:kevin.pause@supinfo.com)
+
+**Gildas Noël**
 
 + [@ackwa](http://twitter.com/ackwa)
 + <http://github.com/krismas>
 + [Ackwa.fr](http://www.ackwa.fr)
 
+---
+
+CSV File exemple
+---
+
+Alfred;Amsterdam;alam@domain.ext  
+Benjamin;Baltimore;beba@domain.ext	
+Charles;Casablanca;chca@domain.ext	
+David;Danemark;dada@domain.ext	
+Edward;Edison;eded@domain.ext
+
+**NO HEADERS!**
+
+---
 
 Copyright and license
 ---
