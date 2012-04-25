@@ -1,4 +1,4 @@
-ImportUsers
+ImportUsersX
 ===
 
 Description
@@ -7,6 +7,14 @@ ImportUsers is a snippet for ModX (it will soon be an add-on) wich helps you add
 
 Documentation
 ---
+
+Install
+---
+If you don't have the package yet, you can download it on [GitHub](https://github.com/ackwa/ImportUsers "GitHub").
+Unzip it in a ImportUsersX folder, located at the root of your website.
+Package the extra by running http://yourwebsite.ext/ImportUsersX/_build/build.transport.php
+
+Once you've got the package install it via Package Manager (if you don't see it try to select "Search package locally" at the top of packages list.
 
 ### Parameters ###
 $sGroup : Name of the group to add members in.  
