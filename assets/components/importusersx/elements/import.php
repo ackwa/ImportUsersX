@@ -67,7 +67,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 	$modx->lexicon->load('fr:importusersx:default');
 	
 	//$sLog = $modx->lexicon('importusersx');
-	$modx->log(modX::LOG_LEVEL_INFO,'Parsing CSV.');
 
 	while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
 	{
@@ -75,8 +74,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 		$sLastName	= trim($data[1]);
 		$sEmail		= trim($data[2]);
 				
-		//list($sAlias) = explode('@',$sEmail); //ModX username : mail - @domain.ext (ex: mail = login@domain.ext =>  username = login)
-		$sAlias = trim($sEmail); //ModX username = mail
+		$sAlias = explode('@',$sEmail); //ModX username : mail - @domain.ext (ex: mail = login@domain.ext =>  username = login)
+		//$sAlias = trim($sEmail); //ModX username = mail
 	
 		//Based on code from Bob Ray
 		$aFields = array(
@@ -91,7 +90,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 		if ( $user  && !$bForcePasswordChange ) //If exists and we haven't to force the password change
 		{
 			//Then only firstname and lastname are changed
-			$modx->log(modX::LOG_LEVEL_INFO,'User already exists. Updating profile\'s informations.');
+			$modx->log(modX::LOG_LEVEL_INFO,$sAlias.' already exists.');
 						
 			//Based on code from culd | steffan
 			$uid = $user->get('id');
@@ -99,10 +98,8 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			{
 				$userProfile->set('fullname', $sFirstName. ' ' .$sLastName);
 				
-				$modx->log(modX::LOG_LEVEL_INFO,$sAlias.'\'s informations updated.');
 				$sChangeLog .= $sAlias."\'s informations updated.\n";
 				$iChangeCount++;
-				
 			}
 			else
 			{
@@ -110,14 +107,10 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			}
 							
 			$userProfile->save();
-			$modx->log(modX::LOG_LEVEL_INFO,$sAlias.'\'s profile saved.');
-			
 		}
 		else
 		{	
 			//Else, we create a new user. It'll be overwritte if it already exists
-			$modx->log(modX::LOG_LEVEL_INFO, 'Creating new user.');
-			
 			$user  = $modx->newObject('modUser', $aFields);
 						
 			$sPass = $user->generatePassword(7); //Generates a random password (ModX method)
@@ -161,12 +154,11 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 					array(
 						'alias'    => $sAlias,
 						'password' => $sPass,
+						'sname' =>  $modx->getOption('site_name')
 					)
 				);
 				
 				$user->sendEmail($sMessage);
-				
-				$modx->log(modX::LOG_LEVEL_INFO,$sAlias.' added.');
 			} 
 			else 
 			{
@@ -175,11 +167,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 		}
 	}
 	
-	$modx->log(modX::LOG_LEVEL_INFO,'Recovering administrator\'s profile.');
-	
 	$user = $modx->getObject('modUser', array('username'=>$sAdminUsername));
-	 
-	$modx->log(modX::LOG_LEVEL_INFO,'Recovering administor email chunk.');
 		
 	$sMessageAdmin = $modx->getChunk($sEmailAdminChunkName, 
 		array(
@@ -189,8 +177,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			'changeLog'   => $sChangeLog,
 		)
 	);
-		
-	$modx->log(modX::LOG_LEVEL_INFO,'Sending email to administrator.');
 		
 	//$user->sendEmail($sMessageAdmin);
 	$modx->getService('mail', 'mail.modPHPMailer');
@@ -203,10 +189,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 	$modx->mail->send();
 	if (!$modx->mail->send()) {
     $modx->log(modX::LOG_LEVEL_ERROR,'An error occurred while trying to send the email: '.$modx->mail->mailer->ErrorInfo);
-	}
-	else
-	{
-		$modx->log(modX::LOG_LEVEL_INFO,'Email sent');
 	}
 	$modx->mail->reset();
 		
