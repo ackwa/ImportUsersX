@@ -70,11 +70,12 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 
 	while(($data = fgetcsv($csv, 1000, ";")) !== FALSE)
 	{
-		$sFirstName	= trim($data[0]);
-		$sLastName	= trim($data[1]);
+		$sFirstName	= htmlentities(trim($data[0]));
+		$sLastName	= htmlentities(trim($data[1]));
 		$sEmail		= trim($data[2]);
 				
-		$sAlias = explode('@',$sEmail); //ModX username : mail - @domain.ext (ex: mail = login@domain.ext =>  username = login)
+		$aExplodeEmail = explode('@',$sEmail); 
+		$sAlias = $aExplodeEmail[0];//ModX username : mail - @domain.ext (ex: mail = login@domain.ext =>  username = login)
 		//$sAlias = trim($sEmail); //ModX username = mail
 	
 		//Based on code from Bob Ray
