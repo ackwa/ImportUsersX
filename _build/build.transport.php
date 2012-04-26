@@ -2,8 +2,8 @@
 /*
  * ImportUsersX :: build.transport.php
  *
- * Copyright 2012 by Kévin PAUSÉ (kevin.pause@supinfo.com)
- * Development funded by Ackwa, agency based at Larçay, Indre-et-Loire, Centre, FRANCE.
+ * Copyright 2012 by Kï¿½vin PAUSï¿½ (kevin.pause@supinfo.com)
+ * Development funded by Ackwa, agency based at Larï¿½ay, Indre-et-Loire, Centre, FRANCE.
  *
  * All rights reserved.
  *
