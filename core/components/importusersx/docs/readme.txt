@@ -27,7 +27,7 @@ We want this tool as close as possible of your needs. So if your have a suggesti
 
 Bug tracker
 ---
-Have a bug? Please create an issue here on GitHub!
+Have a bug? Please create an issue here on GitHub - https://github.com/ackwa/ImportUsersX!
 
 --------------------------------------------------------------------------------
 

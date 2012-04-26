@@ -23,7 +23,7 @@ In **Admin Email Chunk** and **User Email Chunk** fields, you also can add your 
 
 Then, select a **CSV File** from your computer. An exemple is given to you at the end of this readme to be sure that you have the good format.
 
-Need more explanations ? Don't be shy ! Send a mail at [kevin.pause@supinfo.com](mailto:kevin.pause@supinfo.com)
+Need more explanations ? Don't be shy ! Send a mail at [iux@ackwa.fr](mailto:iux@ackwa.fr)
 
 Improvements
 ---
@@ -48,6 +48,7 @@ Authors
 + [@ackwa](http://twitter.com/ackwa)
 + <http://github.com/krismas>
 + [Ackwa.fr](http://www.ackwa.fr)
++ [dev@ackwa.fr](mailto:dev@ackwa.fr)
 
 ---
 Thanks
