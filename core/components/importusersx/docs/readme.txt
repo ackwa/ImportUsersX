@@ -39,3 +39,12 @@ Thanks
 ---
 We'd like to thanks Bob Ray, Shaun McCormick, Steffan Blockx and Romain Tripault for their help. Thank you for your patience because it wasn't always easy to understand us !
 
+CSV File exemple
+---
+
+Alfred;Amsterdam;alam@domain.ext  
+Benjamin;Baltimore;beba@domain.ext	
+Charles;Casablanca;chca@domain.ext	
+David;Danemark;dada@domain.ext	
+Edward;Edison;eded@domain.ext
+

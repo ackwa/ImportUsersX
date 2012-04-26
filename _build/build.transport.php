@@ -31,8 +31,8 @@ set_time_limit(0);
 
 define('PKG_NAME', 'ImportUsersX');
 define('PKG_NAME_LOWER', 'importusersx');
-define('PKG_VERSION', '1.0');
-define('PKG_RELEASE', 'rtm');
+define('PKG_VERSION', '1.0.0');
+define('PKG_RELEASE', 'pl');
 
 /* ----- ---------------- ----- */
 

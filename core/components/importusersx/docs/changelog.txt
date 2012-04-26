@@ -1,8 +1,8 @@
-Changelog file for ImportUsersX components
-
 ImportUsersX
 ========================
 
-Version 1.0 - April, 26th 2012
+Version 1.0.0-pl : April, 26th 2012
 
-Initial Release
+Add users from a .csv file.
+Send an e-mail to each created users and a summary one to the adminstrator from chunks.
+Give member or super user role depending on the users group where users are added.
