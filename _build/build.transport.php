@@ -2,8 +2,8 @@
 /*
  * ImportUsersX :: build.transport.php
  *
- * Copyright 2012 by Kévin PAUSÉ (kevin.pause@supinfo.com)
- * Development funded by Ackwa, agency based at Larçay, Indre-et-Loire, Centre, FRANCE.
+ * Copyright 2012 by Kï¿½vin PAUSï¿½ (kevin.pause@supinfo.com)
+ * Development funded by Ackwa, agency based at Larï¿½ay, Indre-et-Loire, Centre, FRANCE.
  *
  * All rights reserved.
  *
@@ -31,8 +31,8 @@ set_time_limit(0);
 
 define('PKG_NAME', 'ImportUsersX');
 define('PKG_NAME_LOWER', 'importusersx');
-define('PKG_VERSION', '1.0');
-define('PKG_RELEASE', 'rtm');
+define('PKG_VERSION', '1.0.0');
+define('PKG_RELEASE', 'pl');
 
 /* ----- ---------------- ----- */
 
