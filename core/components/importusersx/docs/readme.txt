@@ -19,7 +19,7 @@ Once the extra installed, go to Components > ImportUsersX in your modX menu.
 Select the group you want to add the users to in Users Group Name field. In Admin Email Chunk and User Email Chunk fields, you also can add your own chunks. Just type their name.
 Then, select a CSV File from your computer. An exemple is given to you at the end of this readme to be sure that you have the good format.
 
-Need more explanations ? Don't be shy ! Send a mail at kevin.pause@supinfo.com
+Need more explanations ? Don't be shy ! Send a mail at iux@ackwa.fr
 
 Improvements
 ---
