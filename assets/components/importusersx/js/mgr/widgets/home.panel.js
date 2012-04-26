@@ -172,6 +172,13 @@ window.onload = function (){
 	
 };
 
+/**
+*
+*  AJAX IFRAME METHOD (AIM)
+*  http://www.webtoolkit.info/
+*
+**/
+
 AIM = {
 
     frame : function(c) {
