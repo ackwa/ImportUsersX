@@ -8,8 +8,8 @@ abstract class ImportUsersXManagerController extends modExtraManagerController {
 	
     public function initialize() {
         $this->importusersx = new ImportUsersX($this->modx);
-
-        $this->addCss($this->importusersx->config['cssUrl'].'mgr.css');
+ 
+        $this->addCss($this->importusersx->config['cssUrl'].'mgr.css'); //No needed for now
         $this->addJavascript($this->importusersx->config['jsUrl'].'mgr/importusersx.js');
         $this->addHtml('<script type="text/javascript">
         Ext.onReady(function() {

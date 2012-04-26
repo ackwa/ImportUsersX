@@ -22,12 +22,6 @@
  * Place, Suite 330, Boston, MA 02111-1307 USA
  *
  */
-/*
-* Todo :
-*
-* - IHM
-* - Utiliser les fonction de logs de MODX
-*/
 
 require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/core/model/modx/modx.class.php';
 require_once dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/core/model/modx/modprocessor.class.php';
@@ -135,7 +129,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 			{
 				$sAddLog .= $user->get('username'). ' added <br />';
 				$iAddCount++;
-				
 				($sGroup == 'Administrator') ? $iRoleId = 2 : $iRoleId = 1;
 				$user->joinGroup($sGroup, $iRoleId);//Adds user to Group
 				
@@ -147,7 +140,7 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 						'alias'    => $sAlias,
 						'password' => $sPass,
 						'sname' =>  $modx->getOption('site_name'),
-						'surl' => $modx->getOption('url_scheme') . $modx->getOption('http_host') //. $modx->getOption('manager_url'),
+						'surl' => $modx->getOption('url_scheme') . $modx->getOption('http_host')// . $modx->getOption('manager_url'),
 					)
 				);
 				
@@ -171,7 +164,6 @@ if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
 		)
 	);
 		
-	//$user->sendEmail($sMessageAdmin);
 	$modx->getService('mail', 'mail.modPHPMailer');
 	$modx->mail->set(modMail::MAIL_BODY, $sMessageAdmin);
 	$modx->mail->set(modMail::MAIL_FROM, $modx->config['emailsender']);
