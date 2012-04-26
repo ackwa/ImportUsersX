@@ -3,4 +3,6 @@ Changelog file for ImportUsersX components
 ImportUsersX
 ========================
 
-Initial extra, no changes
+Version 1.0 - April, 26th 2012
+
+Initial Release
