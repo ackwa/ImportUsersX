@@ -4,7 +4,7 @@ ImportUsersX
 
 Description
 ---
-ImportUsers is an extra for ModX wich helps you adding numerous users into your Modx using a .csv file.
+ImportUsersX is an extra for ModX wich helps you adding numerous users into your Modx using a .csv file.
 
 Install
 ---
