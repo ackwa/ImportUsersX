@@ -52,7 +52,7 @@ $iAddCount = 0;
 $iChangeCount = 0;
 $sAddLog = '';
 $sChangeLog = '';
-if (($csv = fopen($sCSVPath,'r')) !== FALSE) {
+if (($csv = fopen($sCSVPath,'r')) != FALSE) {
 
 	$modx->setLogLevel(modX::LOG_LEVEL_INFO);
 	$modx->setLogTarget('ECHO');
