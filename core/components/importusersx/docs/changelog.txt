@@ -1,6 +1,10 @@
 ImportUsersX
 ========================
 
+Version 1.0.1-pl : June, 29th 2012
+
+Fix bug that made a refresh required to show the file field.
+
 Version 1.0.0-pl : April, 26th 2012
 
 Add users from a .csv file.
