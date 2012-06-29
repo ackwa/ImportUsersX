@@ -99,6 +99,7 @@ importUsersX.panel.Home = function(config) {
         }]
 	});
     importUsersX.panel.Home.superclass.constructor.call(this,config);
+	Ext.get("panel").appendChild(uploadForm());
 };
 
 function importusers() {
@@ -155,7 +156,7 @@ function importusers() {
 Ext.extend(importUsersX.panel.Home,MODx.Panel);
 Ext.reg('importusersx-panel-home',importUsersX.panel.Home);
 
-window.onload = function (){
+function uploadForm(){
 	
 	var onChange = "AIM.submit(this.form, {'onStart' : startCallbackform, 'onComplete' : completeCallbackform})";
   var uploadForm = document.createElement('form');
@@ -168,8 +169,8 @@ window.onload = function (){
 						 _('importusersx.csvFile') + 
 						 '</label><input type="file" id="csvPath" class="x-form-field-wrap x-form-field-trigger-wrap"  style="width: 300px;" name="userfile" onChange="'+onChange+';this.form.submit();"/>' +
 						 '</div>';
-	Ext.get("panel").appendChild(uploadForm);
-	
+						 
+	return uploadForm
 };
 
 /**
